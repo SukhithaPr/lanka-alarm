@@ -29,9 +29,12 @@ export interface ActiveAlarm {
 }
 
 export interface Settings {
+  /** Alarm radius for places and pins. */
   radiusM: number;
+  /** Alarm radius for railway stations: trains are fast, so this defaults larger. */
+  trainRadiusM: number;
   /** Road route preview calls a public routing server with your position. Off by default. */
   roadRoute: boolean;
 }
 
-export const DEFAULT_SETTINGS: Settings = { radiusM: 1000, roadRoute: false };
+export const DEFAULT_SETTINGS: Settings = { radiusM: 1000, trainRadiusM: 2000, roadRoute: false };

@@ -123,7 +123,10 @@ export default function Home(p: Props) {
 
   const results = [...local, ...online.filter((o) => !local.some((l) => l.name === o.name))];
   const dest = active?.dest ?? selected;
-  const radiusM = active?.radiusM ?? settings.radiusM;
+  // Stations and other places each remember their own radius.
+  const radiusKey = dest?.kind === 'station' ? 'trainRadiusM' : 'radiusM';
+  const chosenRadius = settings[radiusKey];
+  const radiusM = active?.radiusM ?? chosenRadius;
   const liveDist = dest && me ? distanceM(me, dest) : active?.lastDistanceM;
   const isSaved = !!selected && p.saved.some((x) => x.id === selected.id);
   const nearby = selected?.kind === 'pin' ? nearestStations(selected, 3).filter((n) => n.distM < 3000) : [];
@@ -137,7 +140,7 @@ export default function Home(p: Props) {
   const start = async () => {
     if (!selected) return;
     setBusy(true);
-    const err = await p.onStart(selected, settings.radiusM);
+    const err = await p.onStart(selected, chosenRadius);
     setBusy(false);
     if (err) Alert.alert('Cannot start alarm', err);
   };
@@ -276,10 +279,12 @@ export default function Home(p: Props) {
                   <Text style={s.label}>Wake me when I'm within</Text>
                   <Row style={{ flexWrap: 'wrap' }}>
                     {RADII.map((r) => (
-                      <Chip key={r} label={formatDistance(r)} active={settings.radiusM === r} onPress={() => p.onSettings({ ...settings, radiusM: r })} />
+                      <Chip key={r} label={formatDistance(r)} active={chosenRadius === r} onPress={() => p.onSettings({ ...settings, [radiusKey]: r })} />
                     ))}
                   </Row>
-                  <Text style={s.tip}>Trains move fast: pick 2–5 km to leave time to gather your things.</Text>
+                  {dest.kind === 'station' && (
+                    <Text style={s.tip}>Trains move fast: 2–5 km leaves time to gather your things.</Text>
+                  )}
                   <Row style={{ justifyContent: 'space-between', marginVertical: 10 }}>
                     <Text style={[s.tip, { flex: 1, marginTop: 0 }]}>Road route preview. Sends your position to a public routing server.</Text>
                     <Switch value={settings.roadRoute} onValueChange={(v) => p.onSettings({ ...settings, roadRoute: v })} />
