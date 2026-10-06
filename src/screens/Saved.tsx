@@ -36,10 +36,20 @@ export default function Saved({ saved, onPick, onRemove, onClose, onSetup }: Pro
           </View>
         )}
         ListFooterComponent={
-          <Pressable onPress={onSetup} style={s.setup} accessibilityRole="button">
-            <Text style={s.setupTitle}>Setup and permissions</Text>
-            <Text style={s.meta}>Re-check location, notifications and battery settings, or run a test alarm.</Text>
-          </Pressable>
+          <View>
+            <Pressable onPress={onSetup} style={s.setup} accessibilityRole="button">
+              <Text style={s.setupTitle}>Setup and permissions</Text>
+              <Text style={s.meta}>Re-check location, notifications and battery settings, or run a test alarm.</Text>
+            </Pressable>
+            <View style={s.credits}>
+              <Text style={s.creditsTitle}>Credits</Text>
+              <Text style={s.creditsText}>
+                Map and railway station data © OpenStreetMap contributors, used under the ODbL licence. Place search by
+                Nominatim. Station spellings cross-checked with the Sri Lanka Railways station list.
+              </Text>
+              <Text style={s.creditsText}>Lanka Alarm is open source (MIT). Your location never leaves this phone.</Text>
+            </View>
+          </View>
         }
       />
     </SafeAreaView>
@@ -57,5 +67,8 @@ const s = StyleSheet.create({
   meta: { fontSize: 13, color: C.sub, marginTop: 2 },
   setup: { marginTop: 24, padding: 16, borderRadius: 14, backgroundColor: C.card, borderWidth: 1, borderColor: C.line },
   setupTitle: { fontSize: 16, fontWeight: '700', color: C.blue },
+  credits: { marginTop: 24, paddingHorizontal: 4, gap: 6 },
+  creditsTitle: { fontSize: 13, fontWeight: '700', color: C.sub, textTransform: 'uppercase', letterSpacing: 0.5 },
+  creditsText: { fontSize: 13, color: C.sub, lineHeight: 18 },
   remove: { color: C.danger, fontWeight: '600' },
 });
