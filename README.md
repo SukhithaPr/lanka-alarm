@@ -24,3 +24,8 @@ Needs a dev build (background location and alarm audio do not work in Expo Go):
 - The data also has about 90 OpenStreetMap stations not on the official list (small halts, closed or newly mapped stops); kept because they are real mapped railway features.
 - Public OSM tile, Nominatim and OSRM servers are for development; use a hosted provider before release.
 - Not yet tested on a physical device.
+
+## Data and credits
+- Railway station positions and names: © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors, available under the [ODbL](https://opendatacommons.org/licenses/odbl/1-0/). Official station spellings were cross-checked against the Sri Lanka Railways station list (names only; no coordinates taken from it).
+- Map tiles and place search: OpenStreetMap and Nominatim public servers (development use only).
+- Not included: routemaster.lk data. Used only if its owners agree.
