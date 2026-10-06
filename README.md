@@ -23,7 +23,7 @@ Needs a dev build (background location and alarm audio do not work in Expo Go):
 - 15 stations are not mapped in OpenStreetMap, so their positions are estimated: placed along the railway track using the official distance-from-Fort between the nearest mapped stations (Murunkan and Talaimannar Pier, which have no official distance, use the village centre and the end of the line). The app labels them "Approximate location". Replace with surveyed positions when available: Anawilundawa, Arachchikattuwa, Arukkuwatte, Buthgamuwa, Katunayake Airport, Mangalaeliya, Mundal, Murunkan, Piliduwa, Pulachchikulam, Talaimannar Pier, Thilladiya, Udaththawala, Uggalla, Yahapauwa.
 - The data also has about 90 OpenStreetMap stations not on the official list (small halts, closed or newly mapped stops); kept because they are real mapped railway features.
 - Public OSM tile, Nominatim and OSRM servers are for development; use a hosted provider before release.
-- Not yet tested on a physical device.
+- Tested on a Samsung Galaxy M21 (Android 12, One UI 4.1) on 2026-10-06: test alarm rang and opened over the lock screen. Still untested: a long screen-off ride (Samsung battery limits over 30+ minutes) and real moving GPS on a bus or train.
 
 ## License
 MIT, see [LICENSE](LICENSE). Map data keeps its own licence (below).
