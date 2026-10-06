@@ -8,12 +8,14 @@ interface Raw {
   s: string;
   t: string;
   a?: string[];
+  /** 1 = position estimated along the track from the official km distance */
+  e?: number;
   la: number;
   lo: number;
 }
 
 const toPlaces = (raw: Raw[], kind: PlaceKind): Place[] =>
-  raw.map((r) => ({ id: r.id, name: r.n, kind, lat: r.la, lon: r.lo, sub: [r.s, r.t].filter(Boolean).join(' · ') || undefined, alt: r.a?.join(' ') }));
+  raw.map((r) => ({ id: r.id, name: r.n, kind, lat: r.la, lon: r.lo, sub: r.e ? 'Approximate location' : [r.s, r.t].filter(Boolean).join(' · ') || undefined, alt: r.a?.join(' '), approx: r.e === 1 }));
 
 const STATIONS = toPlaces(stationsRaw as Raw[], 'station');
 

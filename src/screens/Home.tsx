@@ -234,6 +234,9 @@ export default function Home(p: Props) {
                     {liveDist != null ? `${formatDistance(liveDist)} away` : 'Waiting for GPS…'}
                     {route ? ` · by road ${formatDistance(route.distanceM)}, ${formatDuration(route.durationS)}` : ''}
                   </Text>
+                  {dest.approx && (
+                    <Text style={s.approx}>Approximate station location. Use 1 km or more so the alarm is not late.</Text>
+                  )}
                 </View>
                 {!active && selected && (
                   <Pressable onPress={() => p.onToggleSave(selected)} hitSlop={10} accessibilityRole="button" accessibilityLabel={isSaved ? 'Unsave destination' : 'Save destination'}>
@@ -309,6 +312,7 @@ const s = StyleSheet.create({
   rName: { fontSize: 16, fontWeight: '600', color: C.ink },
   rSub: { fontSize: 12, color: C.sub, marginTop: 2 },
   none: { color: C.sub, paddingVertical: 12 },
+  approx: { color: '#b54708', fontSize: 13, marginTop: 4, lineHeight: 18 },
   chipHint: { color: C.sub, fontSize: 13, marginTop: 10 },
   nameInput: { borderWidth: 1, borderColor: C.line, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 8, fontSize: 16, color: C.ink, marginTop: 10 },
   hint: { color: C.sub, fontSize: 15, lineHeight: 21 },

@@ -13,14 +13,14 @@ Needs a dev build (background location and alarm audio do not work in Expo Go):
 - `src/alarm.ts` siren loop, vibration, max-priority notification
 - `src/places.ts` offline railway-station search (bundled OSM data), online town/place search (on Search key only), opt-in road route
 - `src/LeafletMap.tsx` OpenStreetMap map in a WebView
-- `src/data/stations.json` OSM extract, Sri Lanka only (360 stations, checked against the Sri Lanka Railways station list on 2026-10-06). No bus-stop data: bus stops are informal, so users search a town/junction or drop a named pin.
+- `src/data/stations.json` OSM extract, Sri Lanka only (374 stations; every station on the Sri Lanka Railways list is included, checked 2026-10-06). No bus-stop data: bus stops are informal, so users search a town/junction or drop a named pin.
 
 ## Pending
 - Bus filter and bus-route picker are on hold until routemaster.lk answers a data-permission request (sent 2026-10-06). Filters are All and Train only.
 
 ## Known gaps
 - Full-screen alarm over the lock screen: `modules/full-screen-alarm` (Android only). Compiles, but not yet tested on a device.
-- 18 stations on the official Sri Lanka Railways list have no coordinates here (not found in OpenStreetMap): Buthgamuwa, Udaththawala, Katunayaka Airport, Trade Zoone, Arachchikattuwa, Anawilundawa, Pulachchikulam, Mundal, Mangalaeliya, Thilladiya, Yahapauwa, Jaffna CSM, Jaffna SM (likely Jaffna itself), Piliduwa, Arukkuwatte, Uggalla, Murunkan, Talaimannar Pier. Add with verified coordinates.
+- 15 stations are not mapped in OpenStreetMap, so their positions are estimated: placed along the railway track using the official distance-from-Fort between the nearest mapped stations (Murunkan and Talaimannar Pier, which have no official distance, use the village centre and the end of the line). The app labels them "Approximate location". Replace with surveyed positions when available: Anawilundawa, Arachchikattuwa, Arukkuwatte, Buthgamuwa, Katunayake Airport, Mangalaeliya, Mundal, Murunkan, Piliduwa, Pulachchikulam, Talaimannar Pier, Thilladiya, Udaththawala, Uggalla, Yahapauwa.
 - The data also has about 90 OpenStreetMap stations not on the official list (small halts, closed or newly mapped stops); kept because they are real mapped railway features.
 - Public OSM tile, Nominatim and OSRM servers are for development; use a hosted provider before release.
 - Not yet tested on a physical device.

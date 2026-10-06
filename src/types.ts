@@ -9,6 +9,8 @@ export interface Place {
   sub?: string;
   /** Other spellings (e.g. the official Sri Lanka Railways name) so search finds either. */
   alt?: string;
+  /** Position estimated from the official distance along the track, not mapped on the ground. */
+  approx?: boolean;
 }
 
 export interface LatLon {
