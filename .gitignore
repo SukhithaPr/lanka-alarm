@@ -5,3 +5,4 @@ node_modules/
 dist/
 modules/**/build/
 .gradle/
+.idea/
